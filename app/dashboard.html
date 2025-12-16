@@ -4,56 +4,42 @@
   <title>Dashboard | Smart Business Analytics</title>
   <link rel="stylesheet" href="../public/assets/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
+
 <body>
 <script>protectPage();</script>
-  <script>
-const adminSettings = JSON.parse(localStorage.getItem("adminSettings"));
-if (adminSettings && adminSettings.chartsEnabled === false) {
-  document.getElementById("chartsSection").style.display = "none";
-}
-</script>
-
-<script>
-  const adminSettings = JSON.parse(localStorage.getItem("adminSettings"));
-  if (!adminSettings.dashboardEnabled) {
-    alert("Dashboard is disabled by admin");
-    window.location.href = "upload.html";
-  }
-</script>
 
 <header>
   <h1>Smart Business Analytics</h1>
- <nav>
-  <a href="dashboard.html" class="active">Dashboard</a>
-  <a href="upload.html">Upload</a>
-  <a href="profile.html">Profile</a>
-  <a href="#" onclick="logoutUser()">Logout</a>
-</nav>
+  <nav>
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="upload.html">Upload</a>
+    <a href="profile.html">Profile</a>
+    <a href="#" onclick="logoutUser()">Logout</a>
+  </nav>
 </header>
 
 <div class="container">
 
-<div style="margin-bottom:30px;">
-  <h2>Dashboard</h2>
-  <p style="color:#6b7280;">
-    High-level overview of revenue, profit and growth.
-  </p>
-</div>
-
-<h3 style="margin-top:30px;">Key Metrics</h3>
+  <!-- HEADER -->
+  <div style="margin-bottom:30px;">
+    <h2>Dashboard</h2>
+    <p style="color:#6b7280;">
+      High-level overview of revenue, profit and growth.
+    </p>
+  </div>
 
   <!-- KPI SECTION -->
+  <h3>Key Metrics</h3>
   <div class="dashboard-grid" style="margin-top:30px;">
     <div class="kpi">
       <h4>Total Revenue</h4>
-     <p id="revenue">₹ 0</p>
+      <p id="revenue">₹ 0</p>
     </div>
 
     <div class="kpi">
       <h4>Total Profit</h4>
-     <p id="profit">₹ 0</p>
+      <p id="profit">₹ 0</p>
     </div>
 
     <div class="kpi">
@@ -63,166 +49,133 @@ if (adminSettings && adminSettings.chartsEnabled === false) {
 
     <div class="kpi">
       <h4>Growth</h4>
-     <p id="growth">0 %</p>
+      <p id="growth">0 %</p>
     </div>
   </div>
- <h3 style="margin-top:40px;">Performance Charts</h3>
 
-<div id="chartsSection">
-<div class="cards">
-  <div class="card">
-    <h3>📈 Revenue Trend</h3>
-    <canvas id="revenueChart"></canvas>
+  <!-- CHARTS -->
+  <div id="chartsSection">
+    <h3 style="margin-top:40px;">Performance Charts</h3>
+
+    <div class="cards">
+      <div class="card">
+        <h3>📈 Revenue Trend</h3>
+        <canvas id="revenueChart"></canvas>
+      </div>
+
+      <div class="card">
+        <h3>📊 Profit by Product</h3>
+        <canvas id="profitChart"></canvas>
+      </div>
+
+      <div class="card">
+        <h3>🥧 Cost Breakdown</h3>
+        <canvas id="costChart"></canvas>
+      </div>
+    </div>
   </div>
 
-  <div class="card">
-    <h3>📊 Profit by Product</h3>
-    <canvas id="profitChart"></canvas>
-  </div>
-
-  <div class="card">
-    <h3>🥧 Cost Breakdown</h3>
-    <canvas id="costChart"></canvas>
-  </div>
-</div>
-
-</div>
-
+  <!-- INSIGHTS -->
   <h3 style="margin-top:40px;">Insights & Opportunities</h3>
 
-  <!-- INSIGHT SECTION -->
   <div class="cards" style="margin-top:40px;">
     <div class="card">
       <h3>🧠 AI Insight</h3>
-     <p id="aiInsight">Upload your data to receive AI-powered insights.</p>
+      <p id="aiInsight">Insights will appear after analysis.</p>
     </div>
 
     <div class="card">
       <h3>⚠️ Risks</h3>
-     <p id="riskInsight">Potential risks will appear here.</p>
+      <p id="riskInsight">Risks will appear here.</p>
     </div>
 
     <div class="card">
       <h3>🚀 Opportunities</h3>
-     <p id="opportunityInsight">Growth opportunities will appear here.</p>
+      <p id="opportunityInsight">Opportunities will appear here.</p>
     </div>
   </div>
 
 </div>
 
-<script src="../public/assets/app.js"></script>
-  <script>
-  const results = JSON.parse(localStorage.getItem("analysisResults"));
-
-  if (results) {
-    document.getElementById("revenue").innerText = results.revenue;
-    document.getElementById("profit").innerText = results.profit;
-    document.getElementById("margin").innerText = results.margin;
-    document.getElementById("growth").innerText = results.growth;
-
-    document.getElementById("aiInsight").innerText = results.insight;
-    document.getElementById("riskInsight").innerText = results.risk;
-    document.getElementById("opportunityInsight").innerText = results.opportunity;
-  }
-</script>
+<!-- GLOBAL JS -->
 <script src="../public/assets/app.js"></script>
 
+<!-- DASHBOARD LOGIC -->
 <script>
   const results = JSON.parse(localStorage.getItem("analysisResults"));
-  if (results) {
-    document.getElementById("revenue").innerText = results.revenue;
-    document.getElementById("profit").innerText = results.profit;
-    document.getElementById("margin").innerText = results.margin;
-    document.getElementById("growth").innerText = results.growth;
 
-    document.getElementById("aiInsight").innerText = results.insight;
-    document.getElementById("riskInsight").innerText = results.risk;
-    document.getElementById("opportunityInsight").innerText = results.opportunity;
+  if (!results) {
+    alert("No analysis found. Upload data first.");
+    window.location.href = "upload.html";
   }
-</script>
 
-<!-- 👇 PASTE THE CHART CODE HERE -->
-  <script>
-new Chart(document.getElementById("revenueChart"), {
-  type: "line",
-  data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-    datasets: [{
-      label: "Revenue (₹)",
-      data: [400000, 450000, 480000, 520000, 600000, 650000],
-      borderColor: "#2563eb",
-      backgroundColor: "rgba(37,99,235,0.1)",
-      fill: true,
-      tension: 0.4
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      tooltip: {
-        callbacks: {
-          label: (ctx) => "₹ " + ctx.raw.toLocaleString()
-        }
-      },
-      legend: { display: true }
-    },
-    scales: {
-      y: {
-        ticks: {
-          callback: (value) => "₹ " + value.toLocaleString()
-        }
-      }
+  /* ===== KPIs ===== */
+  document.getElementById("revenue").innerText =
+    "₹ " + results.kpis.revenue.toLocaleString();
+
+  document.getElementById("profit").innerText =
+    "₹ " + results.kpis.profit.toLocaleString();
+
+  document.getElementById("margin").innerText =
+    results.kpis.margin + " %";
+
+  document.getElementById("growth").innerText =
+    results.kpis.growth + " %";
+
+  /* ===== ADMIN CONTROL ===== */
+  const adminSettings = JSON.parse(localStorage.getItem("adminSettings"));
+  if (adminSettings && adminSettings.chartsEnabled === false) {
+    document.getElementById("chartsSection").style.display = "none";
+  }
+
+  /* ===== CHARTS ===== */
+  const charts = results.charts;
+
+  // Revenue Trend
+  new Chart(document.getElementById("revenueChart"), {
+    type: "line",
+    data: {
+      labels: charts.revenue_trend.labels,
+      datasets: [{
+        label: "Revenue (₹)",
+        data: charts.revenue_trend.data,
+        borderColor: "#2563eb",
+        backgroundColor: "rgba(37,99,235,0.1)",
+        fill: true,
+        tension: 0.4
+      }]
     }
-  }
-});
-</script>
-<script>
-new Chart(document.getElementById("profitChart"), {
-  type: "bar",
-  data: {
-    labels: ["Product A", "Product B", "Product C"],
-    datasets: [{
-      label: "Profit (₹)",
-      data: [150000, 90000, 70000],
-      backgroundColor: ["#22c55e", "#3b82f6", "#f97316"]
-    }]
-  },
-  options: {
-    plugins: {
-      tooltip: {
-        callbacks: {
-          label: (ctx) => "₹ " + ctx.raw.toLocaleString()
-        }
-      }
-    }
-  }
-});
-</script>
-<script>
-new Chart(document.getElementById("costChart"), {
-  type: "pie",
-  data: {
-    labels: ["Marketing", "Logistics", "Operations"],
-    datasets: [{
-      data: [35, 40, 25],
-      backgroundColor: ["#f97316", "#ef4444", "#3b82f6"]
-    }]
-  },
-  options: {
-    plugins: {
-      tooltip: {
-        callbacks: {
-          label: (ctx) => ctx.label + ": " + ctx.raw + "%"
-        }
-      }
-    }
-  }
-});
-</script>
+  });
 
+  // Profit by Product
+  if (charts.profit_by_product.labels.length) {
+    new Chart(document.getElementById("profitChart"), {
+      type: "bar",
+      data: {
+        labels: charts.profit_by_product.labels,
+        datasets: [{
+          label: "Profit (₹)",
+          data: charts.profit_by_product.data,
+          backgroundColor: "#22c55e"
+        }]
+      }
+    });
+  }
 
-</body>
-</html>
+  // Cost Breakdown
+  if (charts.cost_breakdown.labels.length) {
+    new Chart(document.getElementById("costChart"), {
+      type: "pie",
+      data: {
+        labels: charts.cost_breakdown.labels,
+        datasets: [{
+          data: charts.cost_breakdown.data,
+          backgroundColor: ["#f97316", "#ef4444", "#3b82f6"]
+        }]
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
