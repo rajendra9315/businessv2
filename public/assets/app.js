@@ -38,3 +38,31 @@ function analyzeData() {
   // Redirect to dashboard
   window.location.href = "dashboard.html";
 }
+// ===== USER REGISTRATION =====
+function registerUser() {
+  const user = {
+    status: "PENDING" // PENDING | APPROVED
+  };
+
+  localStorage.setItem("user", JSON.stringify(user));
+  alert("Registration successful. Please complete payment and wait for approval.");
+  window.location.href = "login.html";
+}
+
+// ===== LOGIN WITH APPROVAL CHECK =====
+function loginUser() {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (!user) {
+    alert("No account found. Please register first.");
+    return;
+  }
+
+  if (user.status !== "APPROVED") {
+    alert("Your account is not approved yet.");
+    return;
+  }
+
+  localStorage.setItem("isLoggedIn", "true");
+  window.location.href = "dashboard.html";
+}
