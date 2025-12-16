@@ -132,46 +132,84 @@
 </script>
 
 <!-- 👇 PASTE THE CHART CODE HERE -->
-<script>
-  // ===== FAKE CHART DATA =====
-
-  new Chart(document.getElementById("revenueChart"), {
-    type: "line",
-    data: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-      datasets: [{
-        label: "Revenue (₹)",
-        data: [400000, 450000, 480000, 520000, 600000, 650000],
-        borderColor: "#2563eb",
-        fill: false,
-        tension: 0.4
-      }]
+  <script>
+new Chart(document.getElementById("revenueChart"), {
+  type: "line",
+  data: {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    datasets: [{
+      label: "Revenue (₹)",
+      data: [400000, 450000, 480000, 520000, 600000, 650000],
+      borderColor: "#2563eb",
+      backgroundColor: "rgba(37,99,235,0.1)",
+      fill: true,
+      tension: 0.4
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: (ctx) => "₹ " + ctx.raw.toLocaleString()
+        }
+      },
+      legend: { display: true }
+    },
+    scales: {
+      y: {
+        ticks: {
+          callback: (value) => "₹ " + value.toLocaleString()
+        }
+      }
     }
-  });
-
-  new Chart(document.getElementById("profitChart"), {
-    type: "bar",
-    data: {
-      labels: ["Product A", "Product B", "Product C"],
-      datasets: [{
-        label: "Profit (₹)",
-        data: [150000, 90000, 70000],
-        backgroundColor: "#22c55e"
-      }]
-    }
-  });
-
-  new Chart(document.getElementById("costChart"), {
-    type: "pie",
-    data: {
-      labels: ["Marketing", "Logistics", "Operations"],
-      datasets: [{
-        data: [35, 40, 25],
-        backgroundColor: ["#f97316", "#ef4444", "#3b82f6"]
-      }]
-    }
-  });
+  }
+});
 </script>
+<script>
+new Chart(document.getElementById("profitChart"), {
+  type: "bar",
+  data: {
+    labels: ["Product A", "Product B", "Product C"],
+    datasets: [{
+      label: "Profit (₹)",
+      data: [150000, 90000, 70000],
+      backgroundColor: ["#22c55e", "#3b82f6", "#f97316"]
+    }]
+  },
+  options: {
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: (ctx) => "₹ " + ctx.raw.toLocaleString()
+        }
+      }
+    }
+  }
+});
+</script>
+<script>
+new Chart(document.getElementById("costChart"), {
+  type: "pie",
+  data: {
+    labels: ["Marketing", "Logistics", "Operations"],
+    datasets: [{
+      data: [35, 40, 25],
+      backgroundColor: ["#f97316", "#ef4444", "#3b82f6"]
+    }]
+  },
+  options: {
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ctx.label + ": " + ctx.raw + "%"
+        }
+      }
+    }
+  }
+});
+</script>
+
 
 </body>
 </html>
