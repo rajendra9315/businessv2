@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Upload Data</title>
+  <title>Upload Data | Smart Business Analytics</title>
   <link rel="stylesheet" href="../public/assets/style.css">
 </head>
 <body>
 
-<h2>Upload Business Data</h2>
+<header>
+  <h1>Smart Business Analytics</h1>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="upload.html">Upload</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+</header>
 
-<form>
-  <input type="file" accept=".csv,.xlsx"><br><br>
-  <button>Upload & Analyze</button>
-</form>
+<div class="container">
+
+  <h2>Upload Business Data</h2>
+  <p style="color:#6b7280;">
+    Upload your sales or business data in CSV or Excel format.
+  </p>
+
+  <div class="form-card" style="margin-top:40px;">
+    <h2>Upload File</h2>
+
+    <input type="file" accept=".csv,.xlsx">
+
+    <button class="btn" style="width:100%; margin-top:10px;">
+      Upload & Analyze
+    </button>
+
+    <p style="font-size:13px; color:#6b7280; margin-top:16px;">
+      Supported formats: CSV, XLSX<br>
+      Max file size: 5MB
+    </p>
+  </div>
+
+</div>
 
 <script src="../public/assets/app.js"></script>
 </body>
 </html>
+
 
