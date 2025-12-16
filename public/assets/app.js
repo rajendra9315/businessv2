@@ -66,3 +66,22 @@ function loginUser() {
   localStorage.setItem("isLoggedIn", "true");
   window.location.href = "dashboard.html";
 }
+
+// ===== ADMIN SETTINGS =====
+const defaultAdminSettings = {
+  dashboardEnabled: true,
+  uploadEnabled: true,
+  insightsEnabled: true,
+  maxUploads: 5
+};
+
+if (!localStorage.getItem("adminSettings")) {
+  localStorage.setItem(
+    "adminSettings",
+    JSON.stringify(defaultAdminSettings)
+  );
+}
+
+function getAdminSettings() {
+  return JSON.parse(localStorage.getItem("adminSettings"));
+}
