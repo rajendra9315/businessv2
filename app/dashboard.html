@@ -3,6 +3,8 @@
 <head>
   <title>Dashboard | Smart Business Analytics</title>
   <link rel="stylesheet" href="../public/assets/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
 <script>protectPage();</script>
@@ -57,6 +59,24 @@
      <p id="growth">0 %</p>
     </div>
   </div>
+ <h3 style="margin-top:40px;">Performance Charts</h3>
+
+<div class="cards">
+  <div class="card">
+    <h3>📈 Revenue Trend</h3>
+    <canvas id="revenueChart"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>📊 Profit by Product</h3>
+    <canvas id="profitChart"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>🥧 Cost Breakdown</h3>
+    <canvas id="costChart"></canvas>
+  </div>
+</div>
 
   <h3 style="margin-top:40px;">Insights & Opportunities</h3>
 
