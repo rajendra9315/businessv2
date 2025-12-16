@@ -115,6 +115,66 @@
     document.getElementById("opportunityInsight").innerText = results.opportunity;
   }
 </script>
+<script src="../public/assets/app.js"></script>
+
+<script>
+  const results = JSON.parse(localStorage.getItem("analysisResults"));
+  if (results) {
+    document.getElementById("revenue").innerText = results.revenue;
+    document.getElementById("profit").innerText = results.profit;
+    document.getElementById("margin").innerText = results.margin;
+    document.getElementById("growth").innerText = results.growth;
+
+    document.getElementById("aiInsight").innerText = results.insight;
+    document.getElementById("riskInsight").innerText = results.risk;
+    document.getElementById("opportunityInsight").innerText = results.opportunity;
+  }
+</script>
+
+<!-- 👇 PASTE THE CHART CODE HERE -->
+<script>
+  // ===== FAKE CHART DATA =====
+
+  new Chart(document.getElementById("revenueChart"), {
+    type: "line",
+    data: {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      datasets: [{
+        label: "Revenue (₹)",
+        data: [400000, 450000, 480000, 520000, 600000, 650000],
+        borderColor: "#2563eb",
+        fill: false,
+        tension: 0.4
+      }]
+    }
+  });
+
+  new Chart(document.getElementById("profitChart"), {
+    type: "bar",
+    data: {
+      labels: ["Product A", "Product B", "Product C"],
+      datasets: [{
+        label: "Profit (₹)",
+        data: [150000, 90000, 70000],
+        backgroundColor: "#22c55e"
+      }]
+    }
+  });
+
+  new Chart(document.getElementById("costChart"), {
+    type: "pie",
+    data: {
+      labels: ["Marketing", "Logistics", "Operations"],
+      datasets: [{
+        data: [35, 40, 25],
+        backgroundColor: ["#f97316", "#ef4444", "#3b82f6"]
+      }]
+    }
+  });
+</script>
+
+</body>
+</html>
 
 </body>
 </html>
