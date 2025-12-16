@@ -8,27 +8,87 @@
 
 <div class="container">
   <h2>Admin Panel</h2>
-  <p style="color:#6b7280;">Approve users after payment</p>
+  <p style="color:#6b7280;">
+    Manage users, access, and feature availability.
+  </p>
 
   <div class="card" style="margin-top:30px;">
-    <p>User Status: <strong id="status">Unknown</strong></p>
+    <h3>User Control</h3>
+    <p>Status: <strong id="userStatus">Unknown</strong></p>
     <button class="btn" onclick="approveUser()">Approve User</button>
+  </div>
+
+  <div class="card" style="margin-top:30px;">
+    <h3>Feature Controls</h3>
+
+    <label>
+      <input type="checkbox" id="dashboardToggle"> Enable Dashboard
+    </label><br><br>
+
+    <label>
+      <input type="checkbox" id="uploadToggle"> Enable Upload
+    </label><br><br>
+
+    <label>
+      <input type="checkbox" id="insightsToggle"> Enable AI Insights
+    </label><br><br>
+
+    <label>
+      Max Uploads:
+      <input type="number" id="maxUploads" style="width:80px;">
+    </label><br><br>
+
+    <button class="btn" onclick="saveAdminSettings()">
+      Save Settings
+    </button>
   </div>
 </div>
 
+<script src="../public/assets/app.js"></script>
 <script>
   const user = JSON.parse(localStorage.getItem("user"));
-  document.getElementById("status").innerText = user ? user.status : "No user";
+  const settings = getAdminSettings();
+
+  document.getElementById("userStatus").innerText =
+    user ? user.status : "No user";
+
+  document.getElementById("dashboardToggle").checked =
+    settings.dashboardEnabled;
+
+  document.getElementById("uploadToggle").checked =
+    settings.uploadEnabled;
+
+  document.getElementById("insightsToggle").checked =
+    settings.insightsEnabled;
+
+  document.getElementById("maxUploads").value =
+    settings.maxUploads;
 
   function approveUser() {
-    if (!user) {
-      alert("No user found");
-      return;
-    }
-
+    if (!user) return alert("No user found");
     user.status = "APPROVED";
     localStorage.setItem("user", JSON.stringify(user));
-    alert("User approved successfully!");
+    alert("User approved");
+  }
+
+  function saveAdminSettings() {
+    const newSettings = {
+      dashboardEnabled:
+        document.getElementById("dashboardToggle").checked,
+      uploadEnabled:
+        document.getElementById("uploadToggle").checked,
+      insightsEnabled:
+        document.getElementById("insightsToggle").checked,
+      maxUploads:
+        document.getElementById("maxUploads").value
+    };
+
+    localStorage.setItem(
+      "adminSettings",
+      JSON.stringify(newSettings)
+    );
+
+    alert("Admin settings saved");
   }
 </script>
 
