@@ -1,13 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard</title>
+  <title>Dashboard | Smart Business Analytics</title>
   <link rel="stylesheet" href="../public/assets/style.css">
 </head>
 <body>
 
-<h1>Dashboard</h1>
-<p>Your analytics will appear here.</p>
+<header>
+  <h1>Smart Business Analytics</h1>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="upload.html">Upload</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+</header>
 
+<div class="container">
+
+  <h2>Dashboard</h2>
+  <p style="color:#6b7280;">Overview of your business performance</p>
+
+  <!-- KPI SECTION -->
+  <div class="dashboard-grid" style="margin-top:30px;">
+    <div class="kpi">
+      <h4>Total Revenue</h4>
+      <p>₹ 0</p>
+    </div>
+
+    <div class="kpi">
+      <h4>Total Profit</h4>
+      <p>₹ 0</p>
+    </div>
+
+    <div class="kpi">
+      <h4>Profit Margin</h4>
+      <p>0 %</p>
+    </div>
+
+    <div class="kpi">
+      <h4>Growth</h4>
+      <p>0 %</p>
+    </div>
+  </div>
+
+  <!-- INSIGHT SECTION -->
+  <div class="cards" style="margin-top:40px;">
+    <div class="card">
+      <h3>🧠 AI Insight</h3>
+      <p>
+        Upload your data to receive AI-powered
+        insights and explanations here.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>⚠️ Risks</h3>
+      <p>
+        Potential risks and profit leaks
+        will appear here.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🚀 Opportunities</h3>
+      <p>
+        Growth opportunities and recommendations
+        will appear here.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<script src="../public/assets/app.js"></script>
 </body>
 </html>
