@@ -1,21 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Profile</title>
+  <title>Profile | Smart Business Analytics</title>
   <link rel="stylesheet" href="../public/assets/style.css">
 </head>
 <body>
 
-<h2>User Profile</h2>
+<header>
+  <h1>Smart Business Analytics</h1>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="upload.html">Upload</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+</header>
 
-<form>
-  <label>Profile Photo</label><br>
-  <input type="file" accept="image/*"><br><br>
+<div class="container">
 
-  <input type="text" placeholder="Name"><br><br>
-  <input type="email" placeholder="Email"><br><br>
-  <button>Save Profile</button>
-</form>
+  <h2>Profile</h2>
+  <p style="color:#6b7280;">
+    Manage your personal and business information.
+  </p>
+
+  <div class="form-card" style="margin-top:40px;">
+    <h2>Your Details</h2>
+
+    <label style="font-size:14px;">Profile Photo</label><br><br>
+    <input type="file" accept="image/*"><br><br>
+
+    <input type="text" placeholder="Full Name">
+    <input type="email" placeholder="Email Address">
+    <input type="text" placeholder="Business Name">
+    <input type="text" placeholder="Industry">
+
+    <button class="btn" style="width:100%; margin-top:10px;">
+      Save Changes
+    </button>
+  </div>
+
+</div>
 
 <script src="../public/assets/app.js"></script>
 </body>
