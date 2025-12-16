@@ -26,10 +26,13 @@
   <div class="form-card" style="margin-top:40px;">
     <h2>Upload File</h2>
 
-    <input type="file" accept=".csv,.xlsx">
- <button class="btn" style="width:100%; margin-top:10px;" onclick="analyzeData()">
+<input type="file" id="dataFile" accept=".csv,.xlsx">
+
+<button class="btn" style="width:100%; margin-top:10px;"
+        onclick="uploadAndAnalyze()">
   Upload & Analyze
 </button>
+
 
 
     <p style="font-size:13px; color:#6b7280; margin-top:16px;">
