@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="../public/assets/style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Admin Panel</h2>
+  <p style="color:#6b7280;">Approve users after payment</p>
+
+  <div class="card" style="margin-top:30px;">
+    <p>User Status: <strong id="status">Unknown</strong></p>
+    <button class="btn" onclick="approveUser()">Approve User</button>
+  </div>
+</div>
+
+<script>
+  const user = JSON.parse(localStorage.getItem("user"));
+  document.getElementById("status").innerText = user ? user.status : "No user";
+
+  function approveUser() {
+    if (!user) {
+      alert("No user found");
+      return;
+    }
+
+    user.status = "APPROVED";
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("User approved successfully!");
+  }
+</script>
+
+</body>
+</html>
