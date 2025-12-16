@@ -33,6 +33,10 @@
       <input type="checkbox" id="insightsToggle"> Enable AI Insights
     </label><br><br>
 
+  <label>
+  <input type="checkbox" id="chartsToggle"> Enable Charts
+  </label><br><br>
+
     <label>
       Max Uploads:
       <input type="number" id="maxUploads" style="width:80px;">
@@ -71,25 +75,24 @@
     alert("User approved");
   }
 
-  function saveAdminSettings() {
-    const newSettings = {
-      dashboardEnabled:
-        document.getElementById("dashboardToggle").checked,
-      uploadEnabled:
-        document.getElementById("uploadToggle").checked,
-      insightsEnabled:
-        document.getElementById("insightsToggle").checked,
-      maxUploads:
-        document.getElementById("maxUploads").value
-    };
+  settings.chartsEnabled ??= true;
 
-    localStorage.setItem(
-      "adminSettings",
-      JSON.stringify(newSettings)
-    );
+document.getElementById("chartsToggle").checked =
+  settings.chartsEnabled;
 
-    alert("Admin settings saved");
-  }
+function saveAdminSettings() {
+  const newSettings = {
+    dashboardEnabled: dashboardToggle.checked,
+    uploadEnabled: uploadToggle.checked,
+    insightsEnabled: insightsToggle.checked,
+    chartsEnabled: chartsToggle.checked,
+    maxUploads: maxUploads.value
+  };
+
+  localStorage.setItem("adminSettings", JSON.stringify(newSettings));
+  alert("Admin settings saved");
+}
+
 </script>
 
 </body>
