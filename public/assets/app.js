@@ -1,8 +1,20 @@
-// Shared JavaScript for Smart Business Analytics
+// ===== SIMPLE AUTH STATE =====
+function loginUser() {
+  // fake login (later backend will handle this)
+  localStorage.setItem("isLoggedIn", "true");
+  window.location.href = "dashboard.html";
+}
 
-console.log("Smart Business Analytics loaded");
+function logoutUser() {
+  localStorage.removeItem("isLoggedIn");
+  window.location.href = "../public/index.html";
+}
 
-// Later we will add:
-// - login logic
-// - file upload handling
-// - API calls
+// ===== PAGE PROTECTION =====
+function protectPage() {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  if (!isLoggedIn) {
+    window.location.href = "../public/index.html";
+  }
+}
