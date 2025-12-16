@@ -8,6 +8,13 @@
 </head>
 <body>
 <script>protectPage();</script>
+  <script>
+const adminSettings = JSON.parse(localStorage.getItem("adminSettings"));
+if (adminSettings && adminSettings.chartsEnabled === false) {
+  document.getElementById("chartsSection").style.display = "none";
+}
+</script>
+
 <script>
   const adminSettings = JSON.parse(localStorage.getItem("adminSettings"));
   if (!adminSettings.dashboardEnabled) {
@@ -61,6 +68,7 @@
   </div>
  <h3 style="margin-top:40px;">Performance Charts</h3>
 
+<div id="chartsSection">
 <div class="cards">
   <div class="card">
     <h3>📈 Revenue Trend</h3>
@@ -76,6 +84,8 @@
     <h3>🥧 Cost Breakdown</h3>
     <canvas id="costChart"></canvas>
   </div>
+</div>
+
 </div>
 
   <h3 style="margin-top:40px;">Insights & Opportunities</h3>
