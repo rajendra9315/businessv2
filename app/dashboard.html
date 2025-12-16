@@ -32,22 +32,22 @@
   <div class="dashboard-grid" style="margin-top:30px;">
     <div class="kpi">
       <h4>Total Revenue</h4>
-      <p>₹ 0</p>
+     <p id="revenue">₹ 0</p>
     </div>
 
     <div class="kpi">
       <h4>Total Profit</h4>
-      <p>₹ 0</p>
+     <p id="profit">₹ 0</p>
     </div>
 
     <div class="kpi">
       <h4>Profit Margin</h4>
-      <p>0 %</p>
+      <p id="margin">0 %</p>
     </div>
 
     <div class="kpi">
       <h4>Growth</h4>
-      <p>0 %</p>
+     <p id="growth">0 %</p>
     </div>
   </div>
 
@@ -57,31 +57,37 @@
   <div class="cards" style="margin-top:40px;">
     <div class="card">
       <h3>🧠 AI Insight</h3>
-      <p>
-        Upload your data to receive AI-powered
-        insights and explanations here.
-      </p>
+     <p id="aiInsight">Upload your data to receive AI-powered insights.</p>
     </div>
 
     <div class="card">
       <h3>⚠️ Risks</h3>
-      <p>
-        Potential risks and profit leaks
-        will appear here.
-      </p>
+     <p id="riskInsight">Potential risks will appear here.</p>
     </div>
 
     <div class="card">
       <h3>🚀 Opportunities</h3>
-      <p>
-        Growth opportunities and recommendations
-        will appear here.
-      </p>
+     <p id="opportunityInsight">Growth opportunities will appear here.</p>
     </div>
   </div>
 
 </div>
 
 <script src="../public/assets/app.js"></script>
+  <script>
+  const results = JSON.parse(localStorage.getItem("analysisResults"));
+
+  if (results) {
+    document.getElementById("revenue").innerText = results.revenue;
+    document.getElementById("profit").innerText = results.profit;
+    document.getElementById("margin").innerText = results.margin;
+    document.getElementById("growth").innerText = results.growth;
+
+    document.getElementById("aiInsight").innerText = results.insight;
+    document.getElementById("riskInsight").innerText = results.risk;
+    document.getElementById("opportunityInsight").innerText = results.opportunity;
+  }
+</script>
+
 </body>
 </html>
